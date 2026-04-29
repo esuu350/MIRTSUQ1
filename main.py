@@ -122,7 +122,7 @@ async def check_status(update: Update, context: ContextTypes.DEFAULT_TYPE):
             
             keyboard = [
                 [InlineKeyboardButton("🔄 Refresh", callback_data="check_status")],
-                [InlineKeyboardButton("📤 Invite Friends", url=f"https://t.me/share/url?url={link}&text=Join and Win!")],
+                [InlineKeyboardButton("📤 Invite Friends", url=f"https://t.me/share/url?url={link}&text=የምርጥ ሱቅን ቴሌግራም ቻናል በመቀላቀል ብቻ ተሸላሚ ይሁኑ")],
                 [InlineKeyboardButton("📜 Rules", callback_data="rules")]
             ]
             
@@ -168,7 +168,7 @@ async def track_leave(update: Update, context: ContextTypes.DEFAULT_TYPE):
     res = safe_execute("SELECT referrer_id FROM referrals WHERE invited_user_id=%s", (user_id,), fetch=True)
     if res:
         try:
-            await context.bot.send_message(res[0]['referrer_id'], "⚠️ የጋበዙት ሰው ቻናሉን ስለለቀቀ 1 ነጥብ ቀንሷል።")
+            await context.bot.send_message(res[0]['referrer_id'], "⚠️ የጋበዙት ሰው ቻናሉን ስለለቀቀ 1 ነጥብ ተቀንሷል።")
         except:
             pass
 
