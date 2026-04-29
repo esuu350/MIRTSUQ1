@@ -1,3 +1,4 @@
+import os # Make sure this is at the very top of your imports
 import logging
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -27,19 +28,18 @@ def keep_alive():
     t.start()
 
 # ================= CONFIG =================
-TOKEN = "token here"
+# This tells Python: "Look into Railway's Variables for these names "
+TOKEN = os.environ.get("TOKEN")
+DB_PASSWORD = os.environ.get("DB_PASSWORD")
+
+# These stay the same since they aren't "secret "
 CHANNEL = "@mirtsuq"
 BOT_USERNAME = "mirtsuqbot"
 ADMIN_ID = 8122687721 
-
 DB_HOST = "aws-1-eu-central-1.pooler.supabase.com"
 DB_NAME = "postgres"
 DB_USER = "postgres.slljeiwvoznnbemvbfcs"
-DB_PASSWORD = "password here"
 DB_PORT = "6543"
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 # ================= DB HELPERS =================
 def safe_execute(query, params=(), fetch=False):
